@@ -14,6 +14,10 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
+/**
+ * This test also shows how to combine different frameworks like testcontainers _and_ pact. Testcontainers is used to
+ * simulate an API to be tested using pact provider tests
+ */
 @Provider("HttpBinProvider")        // references one specific provider-config in the pact file
 @PactFolder("pacts")                // default-folder in `/target` (gets filled by consumer-test)
 @Testcontainers                     // used to simulate an actual server to verify the contract agains
