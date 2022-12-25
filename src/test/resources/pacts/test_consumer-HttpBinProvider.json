@@ -1,0 +1,116 @@
+{
+  "consumer": {
+    "name": "test_consumer"
+  },
+  "interactions": [
+    {
+      "description": "ExampleJavaConsumerPactTest test interaction",
+      "providerStates": [
+        {
+          "name": "test the anything endpoint of httpbin"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/anything"
+      },
+      "response": {
+        "body": {
+          "headers": {
+            "Accept-Encoding": "gzip, x-gzip, deflate",
+            "Connection": "keep-alive"
+          },
+          "method": "string",
+          "origin": "string",
+          "url": "string"
+        },
+        "generators": {
+          "body": {
+            "$.method": {
+              "size": 20,
+              "type": "RandomString"
+            },
+            "$.origin": {
+              "size": 20,
+              "type": "RandomString"
+            },
+            "$.url": {
+              "size": 20,
+              "type": "RandomString"
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.headers.Accept-Encoding": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.headers.Connection": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.method": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.origin": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.url": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.4.3"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "HttpBinProvider"
+  }
+}
